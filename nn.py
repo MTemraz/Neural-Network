@@ -104,8 +104,13 @@ class NN:
         result = (target.transpose()==prediction)
         return (np.sum(result)/float(result.shape[0]))*100
         
-    def plot(self,epochs,train_CE,valid_CE):
-        pass
+    def plot(self,epochs,CE_train,CE_valid):
+        plt.plot(epochs,CE_train,'r',label='Training')
+        plt.plot(epochs,CE_valid,'g',label='Validation')
+        plt.xlabel('Epochs')
+        plt.ylabel('CrossEntropy')
+        plt.legend()
+        plt.show()
     
     def save_parameters(self,parameters):
         pickle.dump(parameters,open('weights.txt','wb'))
